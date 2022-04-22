@@ -1,0 +1,23 @@
+pilot:
+  token: "953f0cc5-bdcf-427c-9f31-43ee8db1426b"
+
+api:
+  dashboard: true
+  insecure: true
+
+experimental:
+  localPlugins:
+    headerverify:
+      moduleName: github.com/thanhnguyen/headerverify
+
+entryPoints:
+  http:
+    address: ":8800"
+    forwardedHeaders:
+      insecure: true
+  traefik:
+    address: ":8888"
+
+providers:
+  file:
+    filename: header-rule.yaml

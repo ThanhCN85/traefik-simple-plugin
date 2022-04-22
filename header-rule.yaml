@@ -1,0 +1,34 @@
+http:
+  routers:
+    header-service-router:
+      entryPoints:
+        - http
+      middlewares:
+        - headerverify
+      service: service-header
+      rule: Path(`/whoami`)
+    gateway-router:
+      entryPoints:
+        - http
+      middlewares:
+        - headerverify
+      service: service-search
+      rule: Path(`/_search`)
+
+  services:
+    service-header:
+      loadBalancer:
+        servers:
+        - url: http://localhost:5000/
+        passHostHeader: false
+    service-search:
+      loadBalancer:
+        servers:
+        - url: http://localhost:8000/_search
+        passHostHeader: true
+
+  middlewares:
+    headerverify:
+      plugin:
+        headerverify:
+          Foo: Bar

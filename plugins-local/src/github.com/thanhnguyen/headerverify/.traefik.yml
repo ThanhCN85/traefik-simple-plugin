@@ -1,0 +1,10 @@
+displayName: Header Plugin
+type: middleware
+
+import: github.com/thanhnguyen/headerverify
+
+summary: 'Request Header Verify'
+
+testData:
+  Headers:
+    X-Key: '123'
